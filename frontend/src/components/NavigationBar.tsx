@@ -102,7 +102,7 @@ export default function NavBar() {
             </Menu>
           </div>
         ) : (
-          <Nav.Link href="/login">Login</Nav.Link>
+          <Typography onClick={() => navigate('/login')}>Login</Typography>
         )}
       </Toolbar>
     </AppBar>
