@@ -102,7 +102,16 @@ export default function NavBar() {
             </Menu>
           </div>
         ) : (
-          <Typography onClick={() => navigate('/login')}>Login</Typography>
+          <Typography
+            sx={{
+              ':hover': {
+                cursor: 'pointer',
+              },
+            }}
+            onClick={() => navigate('/login')}
+          >
+            Login
+          </Typography>
         )}
       </Toolbar>
     </AppBar>
