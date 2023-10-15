@@ -6,7 +6,7 @@ import { NewsContext } from '../NewsContext'
 import { useNavigate } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import { Button, CardBody, CardText, CardTitle, Input, Label } from 'reactstrap'
-
+declare const google: any
 export default function NewDesignLogin() {
   const { dispatch } = useContext(NewsContext)
   const navigate = useNavigate()

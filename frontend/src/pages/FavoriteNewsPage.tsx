@@ -200,7 +200,9 @@ export default function FavoriteNewsPage() {
                             zIndex: 2,
                             color: 'grey',
                           }}
-                          onClick={(e) => removeFromFavorites(e, item)}
+                          onClick={(e: React.MouseEvent<HTMLElement>) =>
+                            removeFromFavorites(e, item)
+                          }
                         />
                       </Box>
                     </Tooltip>

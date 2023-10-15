@@ -31,7 +31,7 @@ export default function Subheader() {
   ]
 
   const handleCategoryChange = (
-    e: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     newCategory: CategoryType
   ) => {
     dispatch({ type: 'CATEGORY_CHANGE', payload: newCategory })

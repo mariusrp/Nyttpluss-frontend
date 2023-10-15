@@ -261,8 +261,8 @@ export default function App() {
                               zIndex: 2,
                               color: 'red',
                             }}
-                            onClick={(event) =>
-                              handleIconClick(event, item, index)
+                            onClick={(e: React.MouseEvent<HTMLElement>) =>
+                              handleIconClick(e, item, index)
                             }
                           />
                         ) : (
@@ -273,8 +273,8 @@ export default function App() {
                               color: likedNews.has(index) ? 'red' : 'grey',
                               '&:hover': { color: 'red' },
                             }}
-                            onClick={(event) =>
-                              handleIconClick(event, item, index)
+                            onClick={(e: React.MouseEvent<HTMLElement>) =>
+                              handleIconClick(e, item, index)
                             }
                           />
                         )}
