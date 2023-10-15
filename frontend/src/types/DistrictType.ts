@@ -1,0 +1,12 @@
+export type DistrictType =
+  | 'norge'
+  | 'osloogviken'
+  | 'innlandet'
+  | 'mr'
+  | 'nordland'
+  | 'rogaland'
+  | 'sorlandet'
+  | 'tromsogfinnmark'
+  | 'trondelag'
+  | 'vestfoldogtelemark'
+  | 'vestland'

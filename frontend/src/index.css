@@ -1,0 +1,48 @@
+.root {
+  background-color: #35363a;
+}
+
+.or-separator {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.or-separator .line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.or-separator .or-text {
+  margin: 0 10px;
+  color: #555;
+}
+
+/* Optional: Add these styles to center the entire login container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* .fade-out {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.fade-out::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1.2em; 
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1) 75%
+  );
+} */
