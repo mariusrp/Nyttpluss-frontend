@@ -24,12 +24,12 @@ export default function App() {
   const navigate = useNavigate()
 
   const fetchNews = async () => {
-    let url = `http://localhost:5109/api/rss/fetch-rss/${category}/toppsaker`
+    let url = `https://nyttpluss.azurewebsites.net/api/rss/fetch-rss/${category}/toppsaker`
     if (district === 'norge') {
-      url = `http://localhost:5109/api/rss/fetch-rss/${category}/toppsaker`
+      url = `https://nyttpluss.azurewebsites.net/api/rss/fetch-rss/${category}/toppsaker`
     }
     if (category === 'alle') {
-      url = `http://localhost:5109/api/rss/fetch-rss/${district}/toppsaker`
+      url = `https://nyttpluss.azurewebsites.net/api/rss/fetch-rss/${district}/toppsaker`
     }
     const response = await fetch(url)
     const data = await response.json()
@@ -61,7 +61,7 @@ export default function App() {
   const removeFromFavorites = async (item: NewsType) => {
     try {
       const response = await fetch(
-        `http://localhost:5109/user/${user?.userId}/favorites/${item.id}`,
+        `https://nyttpluss.azurewebsites.net/user/${user?.userId}/favorites/${item.id}`,
         {
           method: 'DELETE',
           headers: {
@@ -80,7 +80,7 @@ export default function App() {
   const saveNewsToFavorites = async (item: NewsType) => {
     try {
       const response = await fetch(
-        `http://localhost:5109/user/${user?.userId}/favorites`,
+        `https://nyttpluss.azurewebsites.net/user/${user?.userId}/favorites`,
         {
           method: 'POST',
           headers: {

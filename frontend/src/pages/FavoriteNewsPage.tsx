@@ -34,7 +34,7 @@ export default function FavoriteNewsPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:5109/user/${user?.userId}/favorites`
+        `https://nyttpluss.azurewebsites.net/user/${user?.userId}/favorites`
       )
       const data = await response.json()
       setFavoriteNews(data)
@@ -66,7 +66,7 @@ export default function FavoriteNewsPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:5109/user/${user?.userId}/favorites/${item.id}`,
+        `https://nyttpluss.azurewebsites.net/user/${user?.userId}/favorites/${item.id}`,
         {
           method: 'DELETE',
           headers: {

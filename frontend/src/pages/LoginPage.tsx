@@ -14,7 +14,7 @@ export default function NewDesignLogin() {
   function handleCredentialResponse(response: ResponseType) {
     const userObject: UserObjectType = jwtDecode(response.credential)
     console.log(JSON.stringify(userObject))
-    fetch('http://localhost:5109/user/login-or-create-user', {
+    fetch('https://nyttpluss.azurewebsites.net/user/login-or-create-user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
