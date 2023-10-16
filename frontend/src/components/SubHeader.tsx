@@ -1,143 +1,69 @@
-import React, { useContext } from 'react'
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Select,
-  MenuItem,
-  IconButton,
-  Badge,
-  Menu,
-} from '@mui/material'
-import AccountCircle from '@mui/icons-material/AccountCircle'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import ToggleButton from '@mui/lab/ToggleButton'
+import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup'
+import { styled } from '@mui/system'
+import { useContext } from 'react'
 import { NewsContext } from '../NewsContext'
-import { SelectChangeEvent } from '@mui/material'
-import { DistrictType } from '../types/DistrictType'
-import { Nav } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { CategoryType } from '../types/CategoryType'
+import { Container } from '@mui/material'
 
-export default function NavBar() {
-  const navigate = useNavigate()
+// You can style the ToggleButtonGroup and ToggleButton if desired
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)({
+  // Your styles here
+})
+
+const StyledToggleButton = styled(ToggleButton)({
+  fontSize: '1rem',
+  '@media (max-width:600px)': {
+    fontSize: '0.8rem',
+  },
+})
+
+export default function Subheader() {
   const { state, dispatch } = useContext(NewsContext)
-  const { user } = state
-
-  const districts: DistrictType[] = [
+  const { category } = state
+  const categories: CategoryType[] = [
     'norge',
-    'innlandet',
-    'mr',
-    'nordland',
-    'rogaland',
-    'sorlandet',
-    'tromsogfinnmark',
-    'trondelag',
-    'vestfoldogtelemark',
-    'vestland',
+    'urix',
+    'sport',
+    'kultur',
+    'livsstil',
+    'viten',
   ]
 
-  const getDistrictDisplayName = (district: DistrictType): string => {
-    switch (district) {
-      case 'norge':
-        return 'Norge'
-      case 'innlandet':
-        return 'Innlandet'
-      case 'mr':
-        return 'Møre og Romsdal'
-      case 'nordland':
-        return 'Nordland'
-      case 'rogaland':
-        return 'Rogaland'
-      case 'sorlandet':
-        return 'Sørlandet'
-      case 'tromsogfinnmark':
-        return 'Troms og Finnmark'
-      case 'trondelag':
-        return 'Trøndelag'
-      case 'vestfoldogtelemark':
-        return 'Vestfold og Telemark'
-      case 'vestland':
-        return 'Vestland'
-      default:
-        return district
-    }
-  }
-
-  const handleDistrictChange = (event: SelectChangeEvent<string>) => {
-    dispatch({
-      type: 'DISTRICT_CHANGE',
-      payload: event.target.value as DistrictType,
-    })
-  }
-
-  const handleLogout = () => {
-    dispatch({ type: 'USER_SIGNOUT' })
-  }
-
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  const goToMyFavorites = () => {
-    navigate('/favorite-news')
+  const handleCategoryChange = (
+    _event: React.MouseEvent<HTMLElement>,
+    newCategory: CategoryType
+  ) => {
+    dispatch({ type: 'CATEGORY_CHANGE', payload: newCategory })
   }
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: 'rgba(255,255,255,0.9)' }}>
-      <Toolbar>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
-          <Nav.Link href="/">NyttPluss</Nav.Link>
-        </Typography>
-        <Select
-          value={state.district}
-          onChange={handleDistrictChange}
-          style={{ marginRight: 20 }}
-        >
-          {districts.map((district) => (
-            <MenuItem value={district} key={district}>
-              {getDistrictDisplayName(district)}
-            </MenuItem>
-          ))}
-        </Select>
-        {user ? (
-          <div>
-            <IconButton
-              color="inherit"
-              edge="end"
-              aria-label="account of current user"
-              aria-haspopup="true"
-              onClick={handleClick}
-            >
-              <Badge color="primary">
-                <AccountCircle />
-              </Badge>
-            </IconButton>
-            <Menu
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              onClick={handleClose}
-            >
-              <MenuItem onClick={goToMyFavorites}>Mine Favoritter</MenuItem>
-              <MenuItem onClick={handleLogout}>Logg ut</MenuItem>
-            </Menu>
-          </div>
-        ) : (
-          <Typography
-            sx={{
-              ':hover': {
-                cursor: 'pointer',
-              },
-            }}
-            onClick={() => navigate('/login')}
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+        mt: 10,
+      }}
+    >
+      <Container>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
+          <StyledToggleButtonGroup
+            value={category}
+            exclusive
+            onChange={handleCategoryChange}
+            aria-label="category selection"
           >
-            Login
-          </Typography>
-        )}
-      </Toolbar>
+            {categories.map((cat) => (
+              <StyledToggleButton value={cat} key={cat} aria-label={cat}>
+                {cat.toUpperCase()}
+              </StyledToggleButton>
+            ))}
+          </StyledToggleButtonGroup>
+        </Toolbar>
+      </Container>
     </AppBar>
   )
 }

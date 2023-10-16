@@ -34,6 +34,33 @@ export default function NavBar() {
     'vestland',
   ]
 
+  const getDistrictDisplayName = (district: DistrictType): string => {
+    switch (district) {
+      case 'norge':
+        return 'Norge'
+      case 'innlandet':
+        return 'Innlandet'
+      case 'mr':
+        return 'Møre og Romsdal'
+      case 'nordland':
+        return 'Nordland'
+      case 'rogaland':
+        return 'Rogaland'
+      case 'sorlandet':
+        return 'Sørlandet'
+      case 'tromsogfinnmark':
+        return 'Troms og Finnmark'
+      case 'trondelag':
+        return 'Trøndelag'
+      case 'vestfoldogtelemark':
+        return 'Vestfold og Telemark'
+      case 'vestland':
+        return 'Vestland'
+      default:
+        return district
+    }
+  }
+
   const handleDistrictChange = (event: SelectChangeEvent<string>) => {
     dispatch({
       type: 'DISTRICT_CHANGE',
@@ -59,7 +86,6 @@ export default function NavBar() {
   }
 
   return (
-    //50 % transparent AppBar
     <AppBar position="sticky" sx={{ backgroundColor: 'rgba(255,255,255,0.9)' }}>
       <Toolbar>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
@@ -72,7 +98,7 @@ export default function NavBar() {
         >
           {districts.map((district) => (
             <MenuItem value={district} key={district}>
-              {district}
+              {getDistrictDisplayName(district)}
             </MenuItem>
           ))}
         </Select>
@@ -85,8 +111,6 @@ export default function NavBar() {
               aria-haspopup="true"
               onClick={handleClick}
             >
-              {' '}
-              {/* Closing bracket was missing */}
               <Badge color="primary">
                 <AccountCircle />
               </Badge>
