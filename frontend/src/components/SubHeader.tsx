@@ -14,7 +14,10 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)({
 })
 
 const StyledToggleButton = styled(ToggleButton)({
-  // Your styles here
+  fontSize: '1rem',
+  '@media (max-width:600px)': {
+    fontSize: '0.8rem',
+  },
 })
 
 export default function Subheader() {
@@ -27,7 +30,6 @@ export default function Subheader() {
     'kultur',
     'livsstil',
     'viten',
-    'ytring',
   ]
 
   const handleCategoryChange = (
